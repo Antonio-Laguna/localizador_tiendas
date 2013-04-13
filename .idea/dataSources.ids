@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Data Source" product="MySQL" version="5.5.29" jdbc-version="4.0" driver-name="MySQL-AB JDBC Driver" driver-version="mysql-connector-java-5.1.23 ( Revision: ${bzr.revision-id} )" uuid="4e9c8364-e2f7-4599-ae41-f776e34466f6">
+    <extra-name-characters>#@</extra-name-characters>
+    <identifier-quote-string>`</identifier-quote-string>
+    <synchronize>true</synchronize>
+    <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+    <jdbc-url>jdbc:mysql://localhost:8889/tiendas</jdbc-url>
+    <user-name>root</user-name>
+    <user-password>dfd8dfc5dfc5dfde</user-password>
+    <schema-pattern>pruebas.* tiendas.*</schema-pattern>
+    <default-schemas>tiendas.*</default-schemas>
+    <default-dialect>MySQL</default-dialect>
+    <libraries>
+      <library>
+        <url>file:///Library/Java/Extensions/mysql-connector-java-5.1.23-bin.jar</url>
+      </library>
+    </libraries>
+    <schema name="" catalog="pruebas"/>
+    <schema name="" catalog="tiendas"/>
+    <table name="bidis" schema="" catalog="pruebas" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="c" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="premio" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="usuario" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="momento_ganador" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="revisado" sqlType="TIMESTAMP" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="motivo" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="bidis_ibfk_1" columns="premio" ref-table="premios" ref-schema="" ref-catalog="pruebas" ref-columns="id" update-rule="2" delete-rule="2" deferrability="2"/>
+      <foreign-key name="bidis_ibfk_2" columns="usuario" ref-table="usuarios" ref-schema="" ref-catalog="pruebas" ref-columns="id" update-rule="2" delete-rule="2" deferrability="2"/>
+      <index name="c" unique="true" columns="c"/>
+    </table>
+    <table name="conectados_fb" schema="" catalog="pruebas" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="id_facebook" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="fecha" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="email" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="id_sesion_fb" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="false" jdbcType="-1"/>
+      <column name="nombre" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="false" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="correos" schema="" catalog="pruebas" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="html" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1"/>
+      <column name="asunto" sqlType="VARCHAR" length="200" precision="0" nullable="false" jdbcType="12"/>
+      <column name="descripcion" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="false" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="premios_ibfk_1" table="premios" schema="" catalog="pruebas" columns="correo"/>
+    </table>
+    <table name="invitados_fb" schema="" catalog="pruebas" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="fk_id_facebook" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="id_facebook_invitado" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="fecha" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="operadores" schema="" catalog="pruebas" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" length="200" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="usuarios_ibfk_1" table="usuarios" schema="" catalog="pruebas" columns="operador"/>
+    </table>
+    <table name="preguntas" schema="" catalog="pruebas" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="pregunta" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="fecha" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="respuesta" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="premio" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="solo_tienda" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="preguntas_ibfk_1" columns="premio" ref-table="premios" ref-schema="" ref-catalog="pruebas" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="respuestas_ibfk_2" table="respuestas" schema="" catalog="pruebas" columns="pregunta"/>
+    </table>
+    <table name="preguntas_copia" schema="" catalog="pruebas" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="pregunta" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="fecha" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="respuesta" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="premio" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="solo_tienda" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="premio" unique="false" columns="premio"/>
+    </table>
+    <table name="premios" schema="" catalog="pruebas" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="tipo" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="premio" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12" def="JzAn"/>
+      <column name="correo" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="premios_ibfk_1" columns="correo" ref-table="correos" ref-schema="" ref-catalog="pruebas" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="premios_ibfk_2" columns="tipo" ref-table="tipos" ref-schema="" ref-catalog="pruebas" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="bidis_ibfk_1" table="bidis" schema="" catalog="pruebas" columns="premio"/>
+      <exported-key name="preguntas_ibfk_1" table="preguntas" schema="" catalog="pruebas" columns="premio"/>
+    </table>
+    <table name="premios_copia" schema="" catalog="pruebas" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="tipo" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="premio" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12" def="JzAn"/>
+      <column name="correo" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="correo" unique="false" columns="correo"/>
+      <index name="tipo" unique="false" columns="tipo"/>
+    </table>
+    <table name="respuestas" schema="" catalog="pruebas" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="pregunta" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="usuario" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="respuesta" sqlType="VARCHAR" length="200" precision="0" nullable="false" jdbcType="12"/>
+      <column name="fecha" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="acertante" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6"/>
+      <column name="ganadora" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="respuestas_ibfk_1" columns="usuario" ref-table="usuarios" ref-schema="" ref-catalog="pruebas" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="respuestas_ibfk_2" columns="pregunta" ref-table="preguntas" ref-schema="" ref-catalog="pruebas" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="tipos" schema="" catalog="pruebas" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="tipo" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="limite" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="premios_ibfk_2" table="premios" schema="" catalog="pruebas" columns="tipo"/>
+    </table>
+    <table name="usuarios" schema="" catalog="pruebas" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="apellidos" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12"/>
+      <column name="movil" sqlType="VARCHAR" length="9" precision="0" nullable="true" jdbcType="12"/>
+      <column name="codigo_postal" sqlType="VARCHAR" length="5" precision="0" nullable="true" jdbcType="12"/>
+      <column name="operador" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="sorteo_bb" sqlType="TINYINT" length="3" precision="0" nullable="true" jdbcType="-6"/>
+      <column name="publi_bidi" sqlType="TINYINT" length="3" precision="0" nullable="true" jdbcType="-6"/>
+      <column name="publi_orange" sqlType="TINYINT" length="3" precision="0" nullable="true" jdbcType="-6"/>
+      <column name="url" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="usuarios_ibfk_1" columns="operador" ref-table="operadores" ref-schema="" ref-catalog="pruebas" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="bidis_ibfk_2" table="bidis" schema="" catalog="pruebas" columns="usuario"/>
+      <exported-key name="respuestas_ibfk_1" table="respuestas" schema="" catalog="pruebas" columns="usuario"/>
+      <index name="email" unique="true" columns="email"/>
+      <index name="movil" unique="true" columns="movil"/>
+    </table>
+    <table name="ciudades" schema="" catalog="tiendas" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="provincia" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="ciudades_ibfk_1" columns="provincia" ref-table="provincias" ref-schema="" ref-catalog="tiendas" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <exported-key name="tiendas_ibfk_1" table="tiendas" schema="" catalog="tiendas" columns="ciudad"/>
+    </table>
+    <table name="iconos" schema="" catalog="tiendas" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="icono" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="tiendas_ibfk_3" table="tiendas" schema="" catalog="tiendas" columns="icono"/>
+    </table>
+    <table name="provincias" schema="" catalog="tiendas" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="ciudades_ibfk_1" table="ciudades" schema="" catalog="tiendas" columns="provincia"/>
+    </table>
+    <table name="tiendas" schema="" catalog="tiendas" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="sfid" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12"/>
+      <column name="nombre_comercial" sqlType="VARCHAR" length="56" precision="0" nullable="false" jdbcType="12"/>
+      <column name="tipo" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="direccion" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12"/>
+      <column name="cp" sqlType="VARCHAR" length="5" precision="0" nullable="false" jdbcType="12"/>
+      <column name="ciudad" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="lat" sqlType="VARCHAR" length="12" precision="0" nullable="false" jdbcType="12"/>
+      <column name="lng" sqlType="VARCHAR" length="12" precision="0" nullable="false" jdbcType="12"/>
+      <column name="icono" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" def="MQ=="/>
+      <column name="texto_promocion" sqlType="TEXT" length="65535" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="texto_animacion" sqlType="TEXT" length="65535" precision="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="tiendas_ibfk_1" columns="ciudad" ref-table="ciudades" ref-schema="" ref-catalog="tiendas" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="tiendas_ibfk_2" columns="tipo" ref-table="tipos" ref-schema="" ref-catalog="tiendas" ref-columns="id" update-rule="2" delete-rule="2" deferrability="2"/>
+      <foreign-key name="tiendas_ibfk_3" columns="icono" ref-table="iconos" ref-schema="" ref-catalog="tiendas" ref-columns="id" update-rule="2" delete-rule="2" deferrability="2"/>
+    </table>
+    <table name="tipos" schema="" catalog="tiendas" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="tiendas_ibfk_2" table="tiendas" schema="" catalog="tiendas" columns="tipo"/>
+    </table>
+  </data-source>
+</component>

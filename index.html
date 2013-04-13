@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Localizador de tiendas</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+</head>
+<body>
+    <div data-role="page" id="localiza">
+        <div data-role="header">
+            <h1>Localizador</h1>
+        </div>
+        <div data-role="content">
+        	<h2>Localiza tu tienda más cercana</h2>
+
+            <form id="form_registro_datos" data-ajax="false">
+                <input type="button" value="ubicar mi posicion" id="obtener_cerca"/>
+                <div data-role="fieldcontain">
+                    <label for="provincias">provincia</label>
+                    <select name="provincias" id="provincias" data-theme="c" data-mini="true"></select>
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="poblaciones">poblacion</label>
+                    <select name="poblaciones" id="poblaciones" data-theme="c" data-mini="true" disabled>
+                        <option value="">seleccione provincia</option>
+                    </select>
+                </div>
+                <input type="submit" value="ver listado de tiendas" id="ver_listado"/>
+            </form>
+        </div>
+        <div data-role="popup" id="errorLocalizacion" class="ui-content" data-theme="e">
+            <p>No hemos podido obtener tu localización.</p>
+        </div>
+    </div>
+    <div id="mapa" data-role="page">
+        <div data-role="header">
+            <h1>Mapa</h1>
+        </div>
+        <div data-role="content">
+            <div id="map"></div>
+            <div class="ui-grid-a" id="contenido-marker">
+                <div class="ui-block-a" id="direccion-marker"></div>
+                <div class="ui-block-b"><button type="button" data-theme="c" id="llegar">como llegar</button></div>
+            </div>
+        </div>
+    </div>
+    <script src="js/localiza.js"></script>
+</body>
+</html>
